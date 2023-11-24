@@ -1,0 +1,38 @@
+#include <Servo.h>
+
+Servo miServo1;
+Servo miServo2;
+int anguloServo1 = 90;
+int anguloServo2 = 90;
+
+void setup() {
+  miServo1.attach(7);
+  miServo2.attach(6);
+
+  miServo1.write(90);
+  miServo2.write(90);
+}
+
+void loop() {
+  // Servo 1
+  if (analogRead(A0) < 200 && anguloServo1 < 180) {
+    anguloServo1++;
+    miServo1.write(anguloServo1);
+  }
+  if (analogRead(A0) > 700 && anguloServo1 > 0) {
+    anguloServo1--;
+    miServo1.write(anguloServo1);
+  }
+
+  // Servo 2
+  if (analogRead(A1) < 200 && anguloServo2 < 180) {
+    anguloServo2++;
+    miServo2.write(anguloServo2);
+  }
+  if (analogRead(A1) > 700 && anguloServo2 > 0) {
+    anguloServo2--;
+    miServo2.write(anguloServo2);
+  }
+
+  delay(15);
+}
